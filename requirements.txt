@@ -1,0 +1,8 @@
+streamlit
+python-dotenv
+openai
+sentence-transformers
+faiss-cpu
+PyMuPDF
+numpy
+
