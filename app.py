@@ -107,8 +107,9 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
 if query:
-    query_vec = model.encode([query])
-    D, I = index.search(np.array([query_vec]), k=5)
+    query_vec = model.encode(query).reshape(1, -1)
+    D, I = index.search(query_vec, k=5)
+
     context = "\n\n".join([chunks[i] for i in I[0]])
 
     response = client.chat.completions.create(
@@ -120,14 +121,21 @@ if query:
     )
 
     answer = response.choices[0].message.content.strip()
+    # --- Show latest answer immediately ---
+    st.markdown("#### Answer")
+    st.markdown(answer)
+
     st.session_state.chat_history.append((query, answer))
 
 # --- Display Chat History ---
-if st.session_state.chat_history:
-    st.write("## 🗂️ Chat History")
-    for i, (q, a) in enumerate(reversed(st.session_state.chat_history)):
-        with st.expander(f"Q{i+1}: {q}", expanded=False):
-            st.markdown(f"**Answer:** {a}")
+
+    for q, a in st.session_state.chat_history:
+        with st.chat_message("user"):
+            st.markdown(q)
+        with st.chat_message("assistant"):
+            st.markdown(a)
+
+
 
 # --- Export Button ---
 if st.session_state.chat_history:
