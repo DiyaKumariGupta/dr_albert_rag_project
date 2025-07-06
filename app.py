@@ -16,7 +16,8 @@ load_dotenv(dotenv_path=Path(__file__).resolve().parent / ".env")
 print("🔑 Loaded KEY:", os.getenv("OPENAI_API_KEY"))
 
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI()
+
 
 # --- Function to load text from all PDFs in 'docs/' folder ---
 def load_all_pdfs(folder_path):
