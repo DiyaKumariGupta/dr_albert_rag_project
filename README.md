@@ -3,8 +3,7 @@ The system retrieves relevant information from uploaded research papers (`/docs`
 
 # RAG System for Academic Document Question Answering
 
-🔗 **Live App:** [Click here to try the app](https://dralbertragproject-buzijqqbzsu47rv9blsjqk
-.streamlit.app
+🔗 **Live App:** [Click here to try the app]: https://dralbertragproject-buzijqqbzsu47rv9blsjqk.streamlit.app
 
 
 
